@@ -1,0 +1,18 @@
+<form [formGroup]="userForm" (ngSubmit)="submit(userForm.value)">
+	<hr>
+	<div formGroupName="type">
+		<div formArrayName="options">
+			<div *ngFor="let child of userForm.get('type.options').controls; let i = index">
+				<div [formGroupName]="i">
+					<label>{{i+1}}. Label: </label>
+            <input formControlName="label" /><br>
+            <label>{{i+1}}. Value: </label>
+            <input formControlName="value" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+  <br>
+  <pre>{{userForm.value | json }}</pre>
